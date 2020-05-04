@@ -1,0 +1,51 @@
+Monsters Table
+	- string name
+	- string url_name
+	- int star
+	- boolean medal
+	- int num_runs
+
+Quests Table
+	- string name
+	- string url_name
+	- string monster (corresponds to monsters table "name")
+	- int star
+	- string type (optional or event)
+	- int num_runs
+
+Runs Table
+	- string runner (corresponds to runners table "name")
+	- string monster (corresponds to monsters table "name")
+	- string quest (corresponds to quests table "name")
+	- string time
+	- string ruleset
+	- string weapon
+	- string platform
+	- date run_date
+	- string link
+
+Runners Table
+	- string name
+	- string url_name
+
+//on hold
+Rankings Table
+	- string ruleset (all/freestyle/ta)
+	- string platform (all/console/pc/ps4/xbox)
+	- string weapon (all/Great Sword/Sword & Shield/Dual Blades/Long Sword/Hammer/Hunting Horn/Lance/Gunlance/Switch Axe/Charge Blade/Insect Glaive/Bow/Light Bowgun/Heavy Bowgun)
+	- mediumtext rankings (csv formatted rankings - row looks like: rank; runner; numGold; numSilver; numBronze; gold_lunastra_freestyle_lance, ... \n)
+
+Tier List Table
+	- string ruleset (freestyle/ta)
+	- string platform (all/console/pc/ps4/xbox)
+	- string weapon1
+	- float score1
+	- string weapon2
+	- float score2
+	- string weapon3
+	- float score3
+	- string weapon4
+	- float score4
+	- string weapon5
+	- float score5
+	...

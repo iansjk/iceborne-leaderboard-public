@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>MHW Iceborne Leaderboards</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Iceborne Leaderboards</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/monsters">Monsters</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/quests">Quests</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/runners">Runners</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rankings">Rankings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/tierlist">Tier List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/rules">Rules</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/submit">Submit</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+        </div>
+      </nav>
+      <br />
+      {% if questlist %}
+      <div class="quest_list container-fluid">
+        <div class="row">
+          <div class = "6_star">
+            <h5 class="ml-4 text-lg-left">6★ Quests:</h5>
+            <ul class="ml-2 text-lg-left" list-style-type="disc" padding-left="1em">
+              {% for quest in six_star %}
+              <li><a href="/quests/{{quest.url_name}}/all/freestyle/all">{{quest.name}} ({{quest.runs}})</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class = "5_star">
+            <h5 class="ml-4 text-lg-left">5★ Quests:</h5>
+            <ul class="ml-2 text-lg-left" list-style-type="disc" padding-left="1em">
+              {% for quest in five_star %}
+              <li><a href="/quests/{{quest.url_name}}/all/freestyle/all">{{quest.name}} ({{quest.runs}})</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class = "4_star">
+            <h5 class="ml-4 text-lg-left">4★ Quests:</h5>
+            <ul class="ml-2 text-lg-left" list-style-type="disc" padding-left="1em">
+              {% for quest in four_star %}
+              <li><a href="/quests/{{quest.url_name}}/all/freestyle/all">{{quest.name}} ({{quest.runs}})</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class = "3_star">
+            <h5 class="ml-4 text-lg-left">3★ Quests:</h5>
+            <ul class="ml-2 text-lg-left" list-style-type="disc" padding-left="1em">
+              {% for quest in three_star %}
+              <li><a href="/quests/{{quest.url_name}}/all/freestyle/all">{{quest.name}} ({{quest.runs}})</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class = "2_star">
+            <h5 class="ml-4 text-lg-left">2★ Quests:</h5>
+            <ul class="ml-2 text-lg-left" list-style-type="disc" padding-left="1em">
+              {% for quest in two_star %}
+              <li><a href="/quests/{{quest.url_name}}/all/freestyle/all">{{quest.name}} ({{quest.runs}})</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class = "1_star">
+            <h5 class="ml-4 text-lg-left">1★ Quests:</h5>
+            <ul class="ml-2 text-lg-left" list-style-type="disc" padding-left="1em">
+              {% for quest in one_star %}
+              <li><a href="/quests/{{quest.url_name}}/all/freestyle/all">{{quest.name}} ({{quest.runs}})</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="quest_runs">
+        <h2 class="ml-5">{{quest_name}}</h2>
+        {% if monster.name == '' %}
+        <br />
+        {% else %}
+        <h6 class="ml-5">Monster:</h6>
+      <ul class="ml-5" list-style-type="disc" padding-left="1em">
+        <li><a href="/monsters/{{monster.url_name}}/{{weapon}}/{{ruleset}}/{{platform}}">{{monster.name}} ({{monster.num_runs}})</a></li>
+      </ul>
+        {% endif %}
+        <div class="row ml-5 flex-nowrap">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if weapon=='all' %}
+            Weapon
+            {% else %}
+            {{weapon_name}}
+            {% endif %}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="/quests/{{quest_url}}/all/{{ruleset}}/{{platform}}">All</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/bow/{{ruleset}}/{{platform}}">Bow</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/charge-blade/{{ruleset}}/{{platform}}">Charge Blade</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/dual-blades/{{ruleset}}/{{platform}}">Dual Blades</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/great-sword/{{ruleset}}/{{platform}}">Great Sword</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/gunlance/{{ruleset}}/{{platform}}">Gunlance</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/hammer/{{ruleset}}/{{platform}}">Hammer</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/heavy-bowgun/{{ruleset}}/{{platform}}">Heavy Bowgun</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/hunting-horn/{{ruleset}}/{{platform}}">Hunting Horn</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/insect-glaive/{{ruleset}}/{{platform}}">Insect Glaive</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/lance/{{ruleset}}/{{platform}}">Lance</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/light-bowgun/{{ruleset}}/{{platform}}">Light Bowgun</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/long-sword/{{ruleset}}/{{platform}}">Long Sword</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/switch-axe/{{ruleset}}/{{platform}}">Switch Axe</a>
+              <a class="dropdown-item" href="/quests/{{quest_url}}/sword-and-shield/{{ruleset}}/{{platform}}">Sword & Shield</a>
+            </div>
+          </div>
+          <div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="options" id="option1" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/freestyle/{{platform}}';" {% if ruleset=='freestyle' %}checked{% endif %}>Freestyle
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/ta-wiki-rules/{{platform}}';"{% if ruleset=='ta-wiki-rules' %}checked{% endif %}>TA
+            </label>
+          </div>
+          <div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="options" id="option1" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/{{ruleset}}/all';" {% if platform=='all' %}checked{% endif %}>All
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/{{ruleset}}/console';"{% if platform=='console' %}checked{% endif %}>Console
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/{{ruleset}}/pc';"{% if platform=='pc' %}checked{% endif %}>PC
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/{{ruleset}}/ps4';"{% if platform=='ps4' %}checked{% endif %}>PS4
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="options" id="option2" autocomplete="off" onclick="location.href='/quests/{{quest_url}}/{{weapon}}/{{ruleset}}/xbox';"{% if platform=='xbox' %}checked{% endif %}>Xbox
+            </label>
+          </div>
+        </div>
+        <br />
+        <div class="mr-5 ml-5">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Runner</th>
+                <th scope="col">Time</th>
+                <th scope="col">Weapon</th>
+                <th scope="col">Platform</th>
+                <th scope="col">Ruleset</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for run in runs %}
+              <tr>
+                <td><a href="/runners/{{run.runner_url}}">{{run.runner}}</a></td>
+                <td><a href="{{run.link}}" target="_blank">{{run.time}}</a></td>
+                <td><a href="/quests/{{quest_url}}/{{run.weapon}}/{{ruleset}}/{{platform}}"><img src="/static/weapon-icon/{{run.weapon}}.png" alt="{{run.weapon}}" height=25></a></td>
+                <td><a href="/quests/{{quest_url}}/{{weapon}}/{{ruleset}}/{{run.platform_url}}">{{run.platform}}</a></td>
+                <td>{% if run.ruleset == 'Freestyle' %}
+                  <a href="/quests/{{quest_url}}/{{weapon}}/freestyle/{{platform}}">{{run.ruleset}}</a>
+                  {% else %}
+                  <a href="/quests/{{quest_url}}/{{weapon}}/ta-wiki-rules/{{platform}}">{{run.ruleset}}</a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {% endif %}
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
